@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import css from './Profile.module.css';
+import container from '../otherStyles/SectionContainer.module.css';
 export default function Profile({
   username,
   tag,
@@ -7,36 +9,43 @@ export default function Profile({
   stats,
 }) {
   return (
-    <div class="profile">
-      <div class="description">
-        <img src={avatar} alt="User avatar" class="avatar" />
-        <p class="name">{username}</p>
-        <p class="tag">{tag}</p>
-        <p class="location">{location}</p>
-      </div>
+    <section className={container.section}>
+      <div className={container.contents}>
+        <div className={css.user}>
+          <img className={css.avatar} src={avatar} alt="User avatar" />
+          <p className={css.name}>{username}</p>
+          <p className={css.tag}>{tag}</p>
+          <p>{location}</p>
+        </div>
 
-      <ul class="stats">
-        <li>
-          <span class="label">{stats.followers}</span>
-          <span class="quantity">1000</span>
-        </li>
-        <li>
-          <span class="label">{stats.views}</span>
-          <span class="quantity">2000</span>
-        </li>
-        <li>
-          <span class="label">{stats.likes}</span>
-          <span class="quantity">3000</span>
-        </li>
-      </ul>
-    </div>
+        <ul className={css.stats}>
+          <li>
+            <span className={css.label}>Followers</span>
+            <span>{stats.followers}</span>
+          </li>
+          <li>
+            <span className={css.label}>Views</span>
+            <span>{stats.views}</span>
+          </li>
+          <li>
+            <span className={css.label}>Likes</span>
+            <span>{stats.likes}</span>
+          </li>
+        </ul>
+      </div>
+    </section>
   );
 }
 Profile.propTypes = {
   username: PropTypes.string.isRequired,
   tag: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  followers: PropTypes.number.isRequired,
-  views: PropTypes.number.isRequired,
-  likes: PropTypes.number.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+  }),
+  // followers: PropTypes.number.isRequired,
+  // views: PropTypes.number.isRequired,
+  // likes: PropTypes.number.isRequired,
 };
