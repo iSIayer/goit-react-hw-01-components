@@ -7,19 +7,14 @@ export default function FriendList({ friends }) {
     <section className={container.section}>
       <div className={container.contents}>
         <ul className={css['friend-list']}>
-          {friends.map((friend, isOnline) => (
-            <li key={friend.id} className={css.item}>
+          {friends.map(({ id, name, avatar, isOnline }) => (
+            <li key={id} className={css.item}>
               <span
                 className={css.status}
                 style={{ backgroundColor: isOnline ? 'green' : 'red' }}
               ></span>
-              <img
-                className={css.avatar}
-                src={friend.avatar}
-                alt=""
-                width="48"
-              />
-              <p>{friend.name}</p>
+              <img className={css.avatar} src={avatar} alt="" width="48" />
+              <p>{name}</p>
             </li>
           ))}
         </ul>
